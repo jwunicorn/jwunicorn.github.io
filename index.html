@@ -34,14 +34,8 @@
 
     /* Slide-in animation for header */
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     header {
@@ -74,6 +68,18 @@
       animation: slideIn 1s ease-out forwards;
     }
 
+    /* NEW SUBPANEL */
+    .subpanel {
+      max-width: 800px;
+      margin: 1.8rem auto 0.5rem;
+      padding: 0.8rem 2rem;
+      text-align: center;
+      font-size: 1.15rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
     /* ABOUT SECTION */
     .about {
       max-width: 700px;
@@ -83,7 +89,6 @@
       color: var(--text-main);
       font-size: 0.95rem;
       line-height: 1.6;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     .about-divider {
@@ -105,19 +110,9 @@
       column-gap: 1.2rem;
     }
 
-    @media (max-width: 900px) {
-      .gallery {
-        column-count: 2;
-      }
-    }
+    @media (max-width: 900px) { .gallery { column-count: 2; } }
+    @media (max-width: 600px) { .gallery { column-count: 1; } }
 
-    @media (max-width: 600px) {
-      .gallery {
-        column-count: 1;
-      }
-    }
-
-    /* Image-only pins */
     .pin {
       break-inside: avoid;
       margin-bottom: 1.2rem;
@@ -127,9 +122,7 @@
       transition: transform 0.15s ease;
     }
 
-    .pin:hover {
-      transform: scale(1.01);
-    }
+    .pin:hover { transform: scale(1.01); }
 
     .pin img {
       width: 100%;
@@ -259,7 +252,7 @@
       background: #d0d0d0;
     }
 
-    /* Floating upload panel (owner only) */
+    /* Floating upload panel */
     .upload-panel-backdrop {
       position: fixed;
       inset: 0;
@@ -352,11 +345,20 @@
     <div class="underline"></div>
   </header>
 
+  <!-- NEW SUBPANEL -->
+  <section class="subpanel">
+    <p>
+      <!-- Replace this with your own text -->
+      Iakwe!
+    </p>
+  </section>
+
   <!-- ABOUT SECTION -->
   <section class="about">
     <p>
-      <!-- Write your permanent text here -->
-      This is where you can write a short introduction, message, or anything you want visitors to know.
+      <!-- Replace this with your permanent About Me text -->
+      Hello. I'm Mianna White and I'm currently taking ICS111. Although I enjoy the class, I wanted to create a space where
+      I could showcase life outside of ICS. I hope you enjoy! :)
     </p>
     <div class="about-divider"></div>
   </section>
@@ -393,7 +395,7 @@
     </div>
   </div>
 
-  <!-- Floating Upload Panel (Owner Only) -->
+  <!-- Floating Upload Panel -->
   <div id="uploadPanelBackdrop" class="upload-panel-backdrop" onclick="closeUploadPanel()">
     <div class="upload-panel" onclick="event.stopPropagation()">
       <h2>Add image</h2>
@@ -412,7 +414,6 @@
     </div>
   </div>
 
-  <!-- Tiny hint for you (subtle) -->
   <div class="hint">Shift + O</div>
 
   <script>
@@ -428,15 +429,13 @@
       document.getElementById("modal").style.display = "none";
     }
 
-    /* Owner mode: password modal */
+    /* Owner mode */
     const OWNER_PASSWORD = "mianArchive";
 
     function openOwnerModal() {
       document.getElementById("ownerModalBackdrop").style.display = "flex";
       document.getElementById("ownerPassword").value = "";
-      setTimeout(() => {
-        document.getElementById("ownerPassword").focus();
-      }, 50);
+      setTimeout(() => document.getElementById("ownerPassword").focus(), 50);
     }
 
     function closeOwnerModal() {
@@ -454,7 +453,7 @@
       }
     }
 
-    /* Floating upload panel */
+    /* Upload panel */
     function openUploadPanel() {
       document.getElementById("uploadPanelBackdrop").style.display = "flex";
     }
@@ -463,7 +462,7 @@
       document.getElementById("uploadPanelBackdrop").style.display = "none";
     }
 
-    /* Add image (owner only) */
+    /* Add image */
     function addImage() {
       const fileInput = document.getElementById("imageUpload");
       const title = document.getElementById("imageTitle").value;
@@ -496,7 +495,7 @@
       document.getElementById("imageNote").value = "";
     }
 
-    /* Keyboard shortcut: Shift + O opens owner password modal */
+    /* Shortcut: Shift + O */
     document.addEventListener("keydown", function (e) {
       if (e.shiftKey && (e.key === "O" || e.key === "o")) {
         e.preventDefault();
