@@ -74,6 +74,27 @@
       animation: slideIn 1s ease-out forwards;
     }
 
+    /* ABOUT SECTION */
+    .about {
+      max-width: 700px;
+      margin: 1.4rem auto 0;
+      padding: 0 2rem;
+      text-align: center;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .about-divider {
+      width: 100%;
+      max-width: 700px;
+      height: 1px;
+      background: var(--border);
+      margin: 1rem auto 1.8rem;
+      opacity: 0.6;
+    }
+
     main {
       padding: 2rem 5vw 3rem;
     }
@@ -247,7 +268,7 @@
       justify-content: center;
       align-items: center;
       z-index: 1400;
-      backdrop-filter: blur(8px); /* medium blur */
+      backdrop-filter: blur(8px);
     }
 
     .upload-panel {
@@ -330,6 +351,15 @@
     <h1>Mianarchive</h1>
     <div class="underline"></div>
   </header>
+
+  <!-- ABOUT SECTION -->
+  <section class="about">
+    <p>
+      <!-- Write your permanent text here -->
+      This is where you can write a short introduction, message, or anything you want visitors to know.
+    </p>
+    <div class="about-divider"></div>
+  </section>
 
   <main>
     <!-- Masonry Image Grid -->
