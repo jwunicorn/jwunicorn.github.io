@@ -17,6 +17,7 @@
       --accent-dark: #9a9a9a;
       --text-main: #2f2f2f;
       --text-muted: #6f6f6f;
+      --danger: #b85c5c;
     }
 
     * {
@@ -148,6 +149,7 @@
       border-radius: 0.8rem;
       max-width: 500px;
       width: 100%;
+      position: relative;
       animation: fadeIn 0.2s ease;
     }
 
@@ -169,6 +171,21 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       margin-bottom: 0.8rem;
+    }
+
+    /* DELETE LINK (owner only) */
+    #deleteLink {
+      display: none;
+      font-size: 0.85rem;
+      color: var(--danger);
+      cursor: pointer;
+      text-align: right;
+      margin-top: 0.5rem;
+      user-select: none;
+    }
+
+    #deleteLink:hover {
+      text-decoration: underline;
     }
 
     @keyframes fadeIn {
@@ -347,18 +364,13 @@
 
   <!-- NEW SUBPANEL -->
   <section class="subpanel">
-    <p>
-      <!-- Replace this with your own text -->
-      Iakwe!
-    </p>
+    <p>A quiet space for collected moments.</p>
   </section>
 
   <!-- ABOUT SECTION -->
   <section class="about">
     <p>
-      <!-- Replace this with your permanent About Me text -->
-      Hello. I'm Mianna White and I'm currently taking ICS111. Although I enjoy the class, I wanted to create a space where
-      I could showcase life outside of ICS. I hope you enjoy! :)
+      This is where you can write a short introduction, message, or anything you want visitors to know.
     </p>
     <div class="about-divider"></div>
   </section>
@@ -366,7 +378,7 @@
   <main>
     <!-- Masonry Image Grid -->
     <section class="gallery" id="gallery">
-      <article class="pin" onclick="openModal('Slow morning','Soft light and quiet moments.','https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg')">
+      <article class="pin" onclick="openModal(this, 'Slow morning','Soft light and quiet moments.','https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg')">
         <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" />
       </article>
     </section>
@@ -378,6 +390,10 @@
       <img id="modalImage" />
       <h3 id="modalTitle"></h3>
       <p id="modalNote"></p>
+
+      <!-- OWNER-ONLY DELETE LINK -->
+      <div id="deleteLink" onclick="deleteImage()">Delete</div>
+
       <button onclick="closeModal()">Close</button>
     </div>
   </div>
@@ -417,16 +433,33 @@
   <div class="hint">Shift + O</div>
 
   <script>
+    let currentPin = null;
+    let ownerMode = false;
+
     /* Image modal */
-    function openModal(title, note, img) {
+    function openModal(pinElement, title, note, img) {
+      currentPin = pinElement;
+
       document.getElementById("modalImage").src = img;
       document.getElementById("modalTitle").textContent = title || "Untitled";
       document.getElementById("modalNote").textContent = note || "";
+
+      // Show delete link only in owner mode
+      document.getElementById("deleteLink").style.display = ownerMode ? "block" : "none";
+
       document.getElementById("modal").style.display = "flex";
     }
 
     function closeModal() {
       document.getElementById("modal").style.display = "none";
+    }
+
+    /* DELETE IMAGE (owner only) */
+    function deleteImage() {
+      if (currentPin) {
+        currentPin.remove();
+        closeModal();
+      }
     }
 
     /* Owner mode */
@@ -445,6 +478,7 @@
     function checkOwnerPassword() {
       const input = document.getElementById("ownerPassword").value;
       if (input === OWNER_PASSWORD) {
+        ownerMode = true;
         closeOwnerModal();
         openUploadPanel();
       } else {
@@ -481,7 +515,7 @@
 
         const pin = document.createElement("article");
         pin.className = "pin";
-        pin.setAttribute("onclick", `openModal(${JSON.stringify(title)},${JSON.stringify(note)},${JSON.stringify(e.target.result)})`);
+        pin.setAttribute("onclick", `openModal(this, ${JSON.stringify(title)}, ${JSON.stringify(note)}, ${JSON.stringify(e.target.result)})`);
 
         pin.innerHTML = `<img src="${e.target.result}" />`;
 
