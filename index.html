@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiet Focus</title>
+  <title>Quiet Focuse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -153,13 +153,13 @@
 
 <body>
   <header>
-    <h1>Quiet Focus</h1>
+    <h1>Quiet Focuse</h1>
   </header>
 
   <main>
     <!-- Image grid -->
     <section class="gallery" id="gallery">
-      <!-- Sample starter pin -->
+      <!-- Starter pin -->
       <article class="pin">
         <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" />
         <div class="pin-body">
@@ -174,3 +174,56 @@
 
       <!-- Upload panel -->
       <section class="panel">
+        <h2>Add Image</h2>
+        <div class="upload-input">
+          <input type="file" id="imageUpload" accept="image/*" />
+          <input type="text" id="imageTitle" placeholder="Title (optional)" />
+          <input type="text" id="imageNote" placeholder="Note (optional)" />
+          <button onclick="addImage()">Pin to board</button>
+        </div>
+      </section>
+
+    </aside>
+  </main>
+
+  <script>
+    function addImage() {
+      const fileInput = document.getElementById("imageUpload");
+      const title = document.getElementById("imageTitle").value;
+      const note = document.getElementById("imageNote").value;
+
+      if (!fileInput.files.length) {
+        alert("Please select an image first.");
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const gallery = document.getElementById("gallery");
+
+        const pin = document.createElement("article");
+        pin.className = "pin";
+
+        pin.innerHTML = `
+          <img src="${e.target.result}" />
+          <div class="pin-body">
+            <div class="pin-title">${title || "Untitled"}</div>
+            <div class="pin-note">${note || ""}</div>
+          </div>
+        `;
+
+        gallery.prepend(pin);
+      };
+
+      reader.readAsDataURL(file);
+
+      fileInput.value = "";
+      document.getElementById("imageTitle").value = "";
+      document.getElementById("imageNote").value = "";
+    }
+  </script>
+
+</body>
+</html>
