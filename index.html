@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiet Focus</title>
+  <title>Mianarchive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     :root {
       --bg: #f7f7f7;
@@ -28,6 +29,21 @@
       line-height: 1.5;
     }
 
+    /* Soft cursive font */
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    /* Slide-in animation */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     header {
       padding: 1.5rem 5vw;
       text-align: center;
@@ -40,9 +56,22 @@
     }
 
     header h1 {
-      font-size: 1.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+      color: var(--text-main);
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    header .underline {
+      width: 140px;
+      height: 1px;
+      background: var(--text-main);
+      margin: 0.2rem auto 0;
+      opacity: 0.35;
+      animation: slideIn 1s ease-out forwards;
     }
 
     main {
@@ -52,6 +81,7 @@
       padding: 2rem 5vw 3rem;
     }
 
+    /* Masonry grid */
     .gallery {
       column-count: 3;
       column-gap: 1.2rem;
@@ -72,14 +102,18 @@
       }
     }
 
+    /* Image-only pins */
     .pin {
       break-inside: avoid;
       margin-bottom: 1.2rem;
-      background: var(--card);
       border-radius: 0.9rem;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .pin:hover {
+      transform: scale(1.01);
     }
 
     .pin img {
@@ -88,21 +122,7 @@
       object-fit: cover;
     }
 
-    .pin-body {
-      padding: 0.75rem 0.9rem 0.9rem;
-    }
-
-    .pin-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .pin-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
+    /* Sidebar */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -148,31 +168,60 @@
       background: var(--accent-dark);
       transform: translateY(-1px);
     }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.8rem;
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 
 <body>
+
   <header>
-    <h1>Quiet Focuse</h1>
+    <h1>Mianarchive</h1>
+    <div class="underline"></div>
   </header>
 
   <main>
-    <!-- Image grid -->
+
+    <!-- Masonry Image Grid -->
     <section class="gallery" id="gallery">
-      <!-- Starter pin -->
-      <article class="pin">
+      <article class="pin" onclick="openModal('Slow morning','Soft light and quiet moments.','https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg')">
         <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" />
-        <div class="pin-body">
-          <div class="pin-title">Slow morning</div>
-          <div class="pin-note">Soft light and quiet moments.</div>
-        </div>
       </article>
     </section>
 
     <!-- Sidebar -->
     <aside class="sidebar">
 
-      <!-- Upload panel -->
       <section class="panel">
         <h2>Add Image</h2>
         <div class="upload-input">
@@ -184,9 +233,31 @@
       </section>
 
     </aside>
+
   </main>
 
+  <!-- Modal -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <img id="modalImage" />
+      <h3 id="modalTitle"></h3>
+      <p id="modalNote"></p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
   <script>
+    function openModal(title, note, img) {
+      document.getElementById("modalImage").src = img;
+      document.getElementById("modalTitle").textContent = title || "Untitled";
+      document.getElementById("modalNote").textContent = note || "";
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
     function addImage() {
       const fileInput = document.getElementById("imageUpload");
       const title = document.getElementById("imageTitle").value;
@@ -205,14 +276,9 @@
 
         const pin = document.createElement("article");
         pin.className = "pin";
+        pin.setAttribute("onclick", `openModal('${title}','${note}','${e.target.result}')`);
 
-        pin.innerHTML = `
-          <img src="${e.target.result}" />
-          <div class="pin-body">
-            <div class="pin-title">${title || "Untitled"}</div>
-            <div class="pin-note">${note || ""}</div>
-          </div>
-        `;
+        pin.innerHTML = `<img src="${e.target.result}" />`;
 
         gallery.prepend(pin);
       };
