@@ -5,7 +5,10 @@
   <title>Mianarchive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Allura header font -->
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
     :root {
       --bg: #f7f7f7;
       --card: #ffffff;
@@ -29,10 +32,7 @@
       line-height: 1.5;
     }
 
-    /* Soft cursive font */
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-    /* Slide-in animation */
+    /* Slide-in animation for header */
     @keyframes slideIn {
       from {
         opacity: 0;
@@ -57,16 +57,16 @@
 
     header h1 {
       font-family: 'Allura', cursive;
-      font-size: 3rem;
+      font-size: 3.4rem;
       font-weight: 400;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
       margin-bottom: 0.2rem;
       color: var(--text-main);
       animation: slideIn 0.8s ease-out forwards;
     }
 
     header .underline {
-      width: 140px;
+      width: 150px;
       height: 1px;
       background: var(--text-main);
       margin: 0.2rem auto 0;
@@ -75,9 +75,6 @@
     }
 
     main {
-      display: grid;
-      grid-template-columns: 3fr 1.2fr;
-      gap: 2rem;
       padding: 2rem 5vw 3rem;
     }
 
@@ -88,9 +85,6 @@
     }
 
     @media (max-width: 900px) {
-      main {
-        grid-template-columns: 1fr;
-      }
       .gallery {
         column-count: 2;
       }
@@ -122,54 +116,7 @@
       object-fit: cover;
     }
 
-    /* Sidebar */
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .panel {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 1.2rem 1.4rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--border);
-    }
-
-    .panel h2 {
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-dark);
-      margin-bottom: 0.75rem;
-    }
-
-    .upload-input {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    button {
-      margin-top: 0.3rem;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
-
-    button:hover {
-      background: var(--accent-dark);
-      transform: translateY(-1px);
-    }
-
-    /* Modal */
+    /* Image modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -196,9 +143,183 @@
       margin-bottom: 1rem;
     }
 
+    .modal-content h3 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+
+    .modal-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.97); }
       to { opacity: 1; transform: scale(1); }
+    }
+
+    button {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Owner password modal */
+    .owner-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      backdrop-filter: blur(6px);
+    }
+
+    .owner-modal {
+      background: #ffffff;
+      border-radius: 0.9rem;
+      padding: 1.2rem 1.4rem;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      animation: fadeIn 0.18s ease;
+    }
+
+    .owner-modal h2 {
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .owner-modal p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .owner-modal input[type="password"] {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .owner-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.4rem;
+    }
+
+    .owner-modal button.secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .owner-modal button.secondary:hover {
+      background: #d0d0d0;
+    }
+
+    /* Floating upload panel (owner only) */
+    .upload-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1400;
+      backdrop-filter: blur(8px); /* medium blur */
+    }
+
+    .upload-panel {
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 1.3rem 1.5rem;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.16);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .upload-panel h2 {
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .upload-panel .upload-input {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.85rem;
+    }
+
+    .upload-panel input[type="file"],
+    .upload-panel input[type="text"] {
+      font-size: 0.85rem;
+    }
+
+    .upload-panel input[type="text"] {
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .upload-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.8rem;
+      gap: 0.5rem;
+    }
+
+    .upload-panel-footer span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .upload-panel-close {
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--border);
+    }
+
+    .upload-panel-close:hover {
+      background: #f0f0f0;
+      transform: none;
+    }
+
+    .hint {
+      position: fixed;
+      bottom: 0.7rem;
+      right: 0.9rem;
+      font-size: 0.7rem;
+      color: #b0b0b0;
+      user-select: none;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -211,32 +332,15 @@
   </header>
 
   <main>
-
     <!-- Masonry Image Grid -->
     <section class="gallery" id="gallery">
       <article class="pin" onclick="openModal('Slow morning','Soft light and quiet moments.','https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg')">
         <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" />
       </article>
     </section>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-
-      <section class="panel">
-        <h2>Add Image</h2>
-        <div class="upload-input">
-          <input type="file" id="imageUpload" accept="image/*" />
-          <input type="text" id="imageTitle" placeholder="Title (optional)" />
-          <input type="text" id="imageNote" placeholder="Note (optional)" />
-          <button onclick="addImage()">Pin to board</button>
-        </div>
-      </section>
-
-    </aside>
-
   </main>
 
-  <!-- Modal -->
+  <!-- Image Modal -->
   <div id="modal" class="modal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <img id="modalImage" />
@@ -246,7 +350,43 @@
     </div>
   </div>
 
+  <!-- Owner Password Modal -->
+  <div id="ownerModalBackdrop" class="owner-modal-backdrop" onclick="closeOwnerModal()">
+    <div class="owner-modal" onclick="event.stopPropagation()">
+      <h2>Owner mode</h2>
+      <p>Enter your password to unlock the upload panel.</p>
+      <input type="password" id="ownerPassword" placeholder="Password" />
+      <div class="owner-modal-actions">
+        <button class="secondary" onclick="closeOwnerModal()">Cancel</button>
+        <button onclick="checkOwnerPassword()">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Upload Panel (Owner Only) -->
+  <div id="uploadPanelBackdrop" class="upload-panel-backdrop" onclick="closeUploadPanel()">
+    <div class="upload-panel" onclick="event.stopPropagation()">
+      <h2>Add image</h2>
+      <div class="upload-input">
+        <input type="file" id="imageUpload" accept="image/*" />
+        <input type="text" id="imageTitle" placeholder="Title (optional)" />
+        <input type="text" id="imageNote" placeholder="Note (optional)" />
+      </div>
+      <div class="upload-panel-footer">
+        <span>Owner only · not visible to visitors</span>
+        <div style="display:flex; gap:0.4rem;">
+          <button class="upload-panel-close" onclick="closeUploadPanel()">Close</button>
+          <button onclick="addImage()">Pin to board</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tiny hint for you (subtle) -->
+  <div class="hint">Shift + O</div>
+
   <script>
+    /* Image modal */
     function openModal(title, note, img) {
       document.getElementById("modalImage").src = img;
       document.getElementById("modalTitle").textContent = title || "Untitled";
@@ -258,6 +398,42 @@
       document.getElementById("modal").style.display = "none";
     }
 
+    /* Owner mode: password modal */
+    const OWNER_PASSWORD = "mianArchive";
+
+    function openOwnerModal() {
+      document.getElementById("ownerModalBackdrop").style.display = "flex";
+      document.getElementById("ownerPassword").value = "";
+      setTimeout(() => {
+        document.getElementById("ownerPassword").focus();
+      }, 50);
+    }
+
+    function closeOwnerModal() {
+      document.getElementById("ownerModalBackdrop").style.display = "none";
+    }
+
+    function checkOwnerPassword() {
+      const input = document.getElementById("ownerPassword").value;
+      if (input === OWNER_PASSWORD) {
+        closeOwnerModal();
+        openUploadPanel();
+      } else {
+        document.getElementById("ownerPassword").value = "";
+        alert("Incorrect password.");
+      }
+    }
+
+    /* Floating upload panel */
+    function openUploadPanel() {
+      document.getElementById("uploadPanelBackdrop").style.display = "flex";
+    }
+
+    function closeUploadPanel() {
+      document.getElementById("uploadPanelBackdrop").style.display = "none";
+    }
+
+    /* Add image (owner only) */
     function addImage() {
       const fileInput = document.getElementById("imageUpload");
       const title = document.getElementById("imageTitle").value;
@@ -276,7 +452,7 @@
 
         const pin = document.createElement("article");
         pin.className = "pin";
-        pin.setAttribute("onclick", `openModal('${title}','${note}','${e.target.result}')`);
+        pin.setAttribute("onclick", `openModal(${JSON.stringify(title)},${JSON.stringify(note)},${JSON.stringify(e.target.result)})`);
 
         pin.innerHTML = `<img src="${e.target.result}" />`;
 
@@ -289,6 +465,14 @@
       document.getElementById("imageTitle").value = "";
       document.getElementById("imageNote").value = "";
     }
+
+    /* Keyboard shortcut: Shift + O opens owner password modal */
+    document.addEventListener("keydown", function (e) {
+      if (e.shiftKey && (e.key === "O" || e.key === "o")) {
+        e.preventDefault();
+        openOwnerModal();
+      }
+    });
   </script>
 
 </body>
