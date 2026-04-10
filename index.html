@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Aesthetic Board</title>
+  <title>Quiet Focuse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #f4f1ea;
-      --card: #fdfaf5;
-      --accent: #c2a58b;
-      --accent-dark: #8a6b4f;
-      --text-main: #3f3a33;
-      --text-muted: #7a7265;
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --border: #e5e5e5;
+      --accent: #bfbfbf;
+      --accent-dark: #9a9a9a;
+      --text-main: #2f2f2f;
+      --text-muted: #6f6f6f;
     }
 
     * {
@@ -29,11 +30,9 @@
 
     header {
       padding: 1.5rem 5vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      background: linear-gradient(to right, #f4f1ea, #f0e6d8);
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: #ffffffcc;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -41,14 +40,9 @@
     }
 
     header h1 {
-      font-size: 1.5rem;
-      letter-spacing: 0.08em;
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-    }
-
-    header span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
     }
 
     main {
@@ -58,7 +52,6 @@
       padding: 2rem 5vw 3rem;
     }
 
-    /* Masonry-like grid */
     .gallery {
       column-count: 3;
       column-gap: 1.2rem;
@@ -85,8 +78,8 @@
       background: var(--card);
       border-radius: 0.9rem;
       overflow: hidden;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
     }
 
     .pin img {
@@ -110,7 +103,6 @@
       color: var(--text-muted);
     }
 
-    /* Sidebar / quotes */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -121,8 +113,8 @@
       background: var(--card);
       border-radius: 1rem;
       padding: 1.2rem 1.4rem;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
     }
 
     .panel h2 {
@@ -133,12 +125,6 @@
       margin-bottom: 0.75rem;
     }
 
-    .upload-info {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
     .upload-input {
       display: flex;
       flex-direction: column;
@@ -146,11 +132,7 @@
       font-size: 0.85rem;
     }
 
-    .upload-input input[type="file"] {
-      font-size: 0.8rem;
-    }
-
-    .upload-input button {
+    button {
       margin-top: 0.3rem;
       padding: 0.45rem 0.8rem;
       border-radius: 999px;
@@ -162,132 +144,33 @@
       transition: background 0.2s ease, transform 0.1s ease;
     }
 
-    .upload-input button:hover {
+    button:hover {
       background: var(--accent-dark);
       transform: translateY(-1px);
     }
-
-    .quotes-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      font-size: 0.9rem;
-    }
-
-    .quote {
-      border-left: 3px solid var(--accent);
-      padding-left: 0.7rem;
-    }
-
-    .quote-text {
-      font-style: italic;
-    }
-
-    .quote-author {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.15rem;
-    }
-
-    footer {
-      padding: 1rem 5vw 2rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-align: center;
-    }
   </style>
 </head>
+
 <body>
   <header>
-    <div>
-      <h1>My Earthy Board</h1>
-      <span>soft neutrals • cozy inspiration • quiet moodboard</span>
-    </div>
+    <h1>Quiet Focuse</h1>
   </header>
 
   <main>
     <!-- Image grid -->
-    <section class="gallery">
-      <!-- Replace image URLs with your own -->
+    <section class="gallery" id="gallery">
+      <!-- Sample starter pin -->
       <article class="pin">
-        <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" alt="Coffee and book" />
+        <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" />
         <div class="pin-body">
           <div class="pin-title">Slow morning</div>
-          <div class="pin-note">Coffee, pages, and quiet light.</div>
+          <div class="pin-note">Soft light and quiet moments.</div>
         </div>
       </article>
-
-      <article class="pin">
-        <img src="https://images.pexels.com/photos/2692552/pexels-photo-2692552.jpeg" alt="Dried plants" />
-        <div class="pin-body">
-          <div class="pin-title">Dried florals</div>
-          <div class="pin-note">Soft browns and textures.</div>
-        </div>
-      </article>
-
-      <article class="pin">
-        <img src="https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg" alt="Mountains" />
-        <div class="pin-body">
-          <div class="pin-title">Muted landscape</div>
-          <div class="pin-note">Earth, sky, and distance.</div>
-        </div>
-      </article>
-
-      <article class="pin">
-        <img src="https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg" alt="Desk" />
-        <div class="pin-body">
-          <div class="pin-title">Workspace calm</div>
-          <div class="pin-note">Neutrals and focus.</div>
-        </div>
-      </article>
-
-      <article class="pin">
-        <img src="https://images.pexels.com/photos/1022923/pexels-photo-1022923.jpeg" alt="Plants" />
-        <div class="pin-body">
-          <div class="pin-title">Green corners</div>
-          <div class="pin-note">Plants softening the edges.</div>
-        </div>
-      </article>
-
-      <!-- Add more <article class="pin"> blocks as you like -->
     </section>
 
-    <!-- Sidebar: upload + quotes -->
+    <!-- Sidebar -->
     <aside class="sidebar">
-      <section class="panel">
-        <h2>Upload area</h2>
-        <p class="upload-info">
-          This is a visual placeholder. To make real uploads work, you’d connect this to a backend or use a service.
-        </p>
-        <div class="upload-input">
-          <label for="imageUpload"><strong>Select image</strong></label>
-          <input type="file" id="imageUpload" accept="image/*" />
-          <button type="button">Pin to board</button>
-        </div>
-      </section>
 
+      <!-- Upload panel -->
       <section class="panel">
-        <h2>Quotes</h2>
-        <div class="quotes-list">
-          <div class="quote">
-            <div class="quote-text">“Create a life that feels good on the inside, not one that just looks good on the outside.”</div>
-            <div class="quote-author">— Unknown</div>
-          </div>
-          <div class="quote">
-            <div class="quote-text">“Slow down. You’re allowed to be a work in progress and a masterpiece at the same time.”</div>
-            <div class="quote-author">— Unknown</div>
-          </div>
-          <div class="quote">
-            <div class="quote-text">“Stay close to people who feel like sunlight.”</div>
-            <div class="quote-author">— Unknown</div>
-          </div>
-        </div>
-      </section>
-    </aside>
-  </main>
-
-  <footer>
-    Your quiet corner of the internet.
-  </footer>
-</body>
-</html>
