@@ -40,8 +40,9 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* THINNER HEADER BAR */
     header {
-      padding: 1.5rem 5vw;
+      padding: 0.8rem 5vw; /* thinner */
       text-align: center;
       border-bottom: 1px solid var(--border);
       background: #ffffffcc;
@@ -53,7 +54,7 @@
 
     header h1 {
       font-family: 'Allura', cursive;
-      font-size: 3.4rem;
+      font-size: 3.0rem; /* slightly smaller for balance */
       font-weight: 400;
       letter-spacing: 0.03em;
       margin-bottom: 0.2rem;
@@ -72,7 +73,7 @@
     /* SUBPANEL */
     .subpanel {
       max-width: 800px;
-      margin: 1.8rem auto 0.5rem;
+      margin: 1.4rem auto 0.4rem;
       padding: 0.8rem 2rem;
       text-align: center;
       font-size: 1.15rem;
@@ -82,7 +83,7 @@
     /* ABOUT SECTION */
     .about {
       max-width: 700px;
-      margin: 1.4rem auto 0;
+      margin: 0.6rem auto 0;
       padding: 0 2rem;
       text-align: center;
       font-size: 0.95rem;
@@ -103,7 +104,7 @@
       max-width: 900px;
       margin: 2rem auto;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.4rem;
     }
 
@@ -200,23 +201,45 @@
     <div class="about-divider"></div>
   </section>
 
-  <!-- FOUR PANELS -->
+  <!-- 3×3 PANELS IN YOUR EXACT ORDER -->
   <section class="info-panels">
-    <div class="panel" onclick="openTextModal('About Me', 'Test: I like tacos:).')">
-      About Me
-    </div>
 
-    <div class="panel" onclick="openTextModal('Interests', 'Write your interests here...')">
-      Interests
+    <div class="panel" onclick="openTextModal('Meeee', 'Write about yourself here...')">
+      Meeee
     </div>
 
     <div class="panel" onclick="openTextModal('ICS111', 'Write your ICS111 info here...')">
       ICS111
     </div>
 
+    <div class="panel" onclick="openTextModal('Marshall Islands', 'Write about the Marshall Islands here...')">
+      Marshall Islands
+    </div>
+
+    <div class="panel" onclick="openTextModal('Interests', 'Write your interests here...')">
+      Interests
+    </div>
+
     <div class="panel" onclick="openTextModal('Goals', 'Write your goals here...')">
       Goals
     </div>
+
+    <div class="panel" onclick="openTextModal('Panel 6', 'Edit this panel text...')">
+      Panel 6
+    </div>
+
+    <div class="panel" onclick="openTextModal('Story Time', 'Write your stories here...')">
+      Story Time
+    </div>
+
+    <div class="panel" onclick="openTextModal('Panel 8', 'Edit this panel text...')">
+      Panel 8
+    </div>
+
+    <div class="panel" onclick="openTextModal('Panel 9', 'Edit this panel text...')">
+      Panel 9
+    </div>
+
   </section>
 
   <!-- TEXT MODAL -->
