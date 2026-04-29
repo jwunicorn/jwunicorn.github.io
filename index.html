@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Mianarchive</title>
+  <title>Jamrianna White</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Allura header font -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
 
@@ -20,11 +19,7 @@
       --danger: #b85c5c;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -33,7 +28,6 @@
       line-height: 1.5;
     }
 
-    /* Slide-in animation for header */
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -56,7 +50,6 @@
       font-weight: 400;
       letter-spacing: 0.03em;
       margin-bottom: 0.2rem;
-      color: var(--text-main);
       animation: slideIn 0.8s ease-out forwards;
     }
 
@@ -69,15 +62,13 @@
       animation: slideIn 1s ease-out forwards;
     }
 
-    /* NEW SUBPANEL */
+    /* SUBPANEL */
     .subpanel {
       max-width: 800px;
       margin: 1.8rem auto 0.5rem;
       padding: 0.8rem 2rem;
       text-align: center;
       font-size: 1.15rem;
-      color: var(--text-main);
-      line-height: 1.6;
       opacity: 0.9;
     }
 
@@ -87,7 +78,6 @@
       margin: 1.4rem auto 0;
       padding: 0 2rem;
       text-align: center;
-      color: var(--text-main);
       font-size: 0.95rem;
       line-height: 1.6;
     }
@@ -101,37 +91,32 @@
       opacity: 0.6;
     }
 
-    main {
-      padding: 2rem 5vw 3rem;
+    /* PANELS */
+    .info-panels {
+      max-width: 900px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
     }
 
-    /* Masonry grid */
-    .gallery {
-      column-count: 3;
-      column-gap: 1.2rem;
-    }
-
-    @media (max-width: 900px) { .gallery { column-count: 2; } }
-    @media (max-width: 600px) { .gallery { column-count: 1; } }
-
-    .pin {
-      break-inside: avoid;
-      margin-bottom: 1.2rem;
+    .panel {
+      background: white;
+      padding: 2rem;
       border-radius: 0.9rem;
-      overflow: hidden;
+      text-align: center;
+      font-size: 1.2rem;
+      border: 1px solid var(--border);
       cursor: pointer;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, background 0.2s ease;
     }
 
-    .pin:hover { transform: scale(1.01); }
-
-    .pin img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
+    .panel:hover {
+      transform: translateY(-3px);
+      background: #fafafa;
     }
 
-    /* Image modal */
+    /* MODALS */
     .modal {
       position: fixed;
       inset: 0;
@@ -149,14 +134,7 @@
       border-radius: 0.8rem;
       max-width: 500px;
       width: 100%;
-      position: relative;
       animation: fadeIn 0.2s ease;
-    }
-
-    .modal-content img {
-      width: 100%;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
     }
 
     .modal-content h3 {
@@ -173,21 +151,6 @@
       margin-bottom: 0.8rem;
     }
 
-    /* DELETE LINK (owner only) */
-    #deleteLink {
-      display: none;
-      font-size: 0.85rem;
-      color: var(--danger);
-      cursor: pointer;
-      text-align: right;
-      margin-top: 0.5rem;
-      user-select: none;
-    }
-
-    #deleteLink:hover {
-      text-decoration: underline;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.97); }
       to { opacity: 1; transform: scale(1); }
@@ -201,146 +164,6 @@
       color: #fff;
       font-size: 0.85rem;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
-
-    button:hover {
-      background: var(--accent-dark);
-      transform: translateY(-1px);
-    }
-
-    /* Owner password modal */
-    .owner-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1500;
-      backdrop-filter: blur(6px);
-    }
-
-    .owner-modal {
-      background: #ffffff;
-      border-radius: 0.9rem;
-      padding: 1.2rem 1.4rem;
-      max-width: 320px;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      animation: fadeIn 0.18s ease;
-    }
-
-    .owner-modal h2 {
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent-dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .owner-modal p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.7rem;
-    }
-
-    .owner-modal input[type="password"] {
-      width: 100%;
-      padding: 0.45rem 0.6rem;
-      border-radius: 0.5rem;
-      border: 1px solid var(--border);
-      font-size: 0.85rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .owner-modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.4rem;
-    }
-
-    .owner-modal button.secondary {
-      background: #e0e0e0;
-      color: #333;
-    }
-
-    .owner-modal button.secondary:hover {
-      background: #d0d0d0;
-    }
-
-    /* Floating upload panel */
-    .upload-panel-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1400;
-      backdrop-filter: blur(8px);
-    }
-
-    .upload-panel {
-      background: #ffffff;
-      border-radius: 1rem;
-      padding: 1.3rem 1.5rem;
-      max-width: 360px;
-      width: 100%;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.16);
-      animation: fadeIn 0.2s ease;
-    }
-
-    .upload-panel h2 {
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent-dark);
-      margin-bottom: 0.8rem;
-    }
-
-    .upload-panel .upload-input {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      font-size: 0.85rem;
-    }
-
-    .upload-panel input[type="file"],
-    .upload-panel input[type="text"] {
-      font-size: 0.85rem;
-    }
-
-    .upload-panel input[type="text"] {
-      padding: 0.45rem 0.6rem;
-      border-radius: 0.5rem;
-      border: 1px solid var(--border);
-    }
-
-    .upload-panel-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.8rem;
-      gap: 0.5rem;
-    }
-
-    .upload-panel-footer span {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .upload-panel-close {
-      background: transparent;
-      color: var(--text-muted);
-      border-radius: 999px;
-      padding: 0.3rem 0.6rem;
-      border: 1px solid var(--border);
-    }
-
-    .upload-panel-close:hover {
-      background: #f0f0f0;
-      transform: none;
     }
 
     .hint {
@@ -350,7 +173,6 @@
       font-size: 0.7rem;
       color: #b0b0b0;
       user-select: none;
-      pointer-events: none;
     }
   </style>
 </head>
@@ -358,184 +180,59 @@
 <body>
 
   <header>
-    <h1>Mianarchive</h1>
+    <h1>Jamrianna White</h1>
     <div class="underline"></div>
   </header>
 
-  <!-- NEW SUBPANEL -->
   <section class="subpanel">
-    <p>A quiet space for collected moments.</p>
+    <p>Iakwe! | Hello!</p>
   </section>
 
-  <!-- ABOUT SECTION -->
   <section class="about">
-    <p>
-      This is where you can write a short introduction, message, or anything you want visitors to know.
-    </p>
+    <p>This is where you can write a short introduction or message.</p>
     <div class="about-divider"></div>
   </section>
 
-  <main>
-    <!-- Masonry Image Grid -->
-    <section class="gallery" id="gallery">
-      <article class="pin" onclick="openModal(this, 'Slow morning','Soft light and quiet moments.','https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg')">
-        <img src="https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg" />
-      </article>
-    </section>
-  </main>
+  <!-- FOUR PANELS -->
+  <section class="info-panels">
+    <div class="panel" onclick="openTextModal('About Me', 'Write about yourself here...')">
+      About Me
+    </div>
 
-  <!-- Image Modal -->
-  <div id="modal" class="modal" onclick="closeModal()">
+    <div class="panel" onclick="openTextModal('Interests', 'Write your interests here...')">
+      Interests
+    </div>
+
+    <div class="panel" onclick="openTextModal('ICS111', 'Write your ICS111 info here...')">
+      ICS111
+    </div>
+
+    <div class="panel" onclick="openTextModal('Goals', 'Write your goals here...')">
+      Goals
+    </div>
+  </section>
+
+  <!-- TEXT MODAL -->
+  <div id="textModal" class="modal" onclick="closeTextModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <img id="modalImage" />
-      <h3 id="modalTitle"></h3>
-      <p id="modalNote"></p>
-
-      <!-- OWNER-ONLY DELETE LINK -->
-      <div id="deleteLink" onclick="deleteImage()">Delete</div>
-
-      <button onclick="closeModal()">Close</button>
-    </div>
-  </div>
-
-  <!-- Owner Password Modal -->
-  <div id="ownerModalBackdrop" class="owner-modal-backdrop" onclick="closeOwnerModal()">
-    <div class="owner-modal" onclick="event.stopPropagation()">
-      <h2>Owner mode</h2>
-      <p>Enter your password to unlock the upload panel.</p>
-      <input type="password" id="ownerPassword" placeholder="Password" />
-      <div class="owner-modal-actions">
-        <button class="secondary" onclick="closeOwnerModal()">Cancel</button>
-        <button onclick="checkOwnerPassword()">Unlock</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Upload Panel -->
-  <div id="uploadPanelBackdrop" class="upload-panel-backdrop" onclick="closeUploadPanel()">
-    <div class="upload-panel" onclick="event.stopPropagation()">
-      <h2>Add image</h2>
-      <div class="upload-input">
-        <input type="file" id="imageUpload" accept="image/*" />
-        <input type="text" id="imageTitle" placeholder="Title (optional)" />
-        <input type="text" id="imageNote" placeholder="Note (optional)" />
-      </div>
-      <div class="upload-panel-footer">
-        <span>Owner only · not visible to visitors</span>
-        <div style="display:flex; gap:0.4rem;">
-          <button class="upload-panel-close" onclick="closeUploadPanel()">Close</button>
-          <button onclick="addImage()">Pin to board</button>
-        </div>
-      </div>
+      <h3 id="textModalTitle"></h3>
+      <p id="textModalBody"></p>
+      <button onclick="closeTextModal()">Close</button>
     </div>
   </div>
 
   <div class="hint">Shift + O</div>
 
   <script>
-    let currentPin = null;
-    let ownerMode = false;
-
-    /* Image modal */
-    function openModal(pinElement, title, note, img) {
-      currentPin = pinElement;
-
-      document.getElementById("modalImage").src = img;
-      document.getElementById("modalTitle").textContent = title || "Untitled";
-      document.getElementById("modalNote").textContent = note || "";
-
-      // Show delete link only in owner mode
-      document.getElementById("deleteLink").style.display = ownerMode ? "block" : "none";
-
-      document.getElementById("modal").style.display = "flex";
+    function openTextModal(title, body) {
+      document.getElementById("textModalTitle").textContent = title;
+      document.getElementById("textModalBody").textContent = body;
+      document.getElementById("textModal").style.display = "flex";
     }
 
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
+    function closeTextModal() {
+      document.getElementById("textModal").style.display = "none";
     }
-
-    /* DELETE IMAGE (owner only) */
-    function deleteImage() {
-      if (currentPin) {
-        currentPin.remove();
-        closeModal();
-      }
-    }
-
-    /* Owner mode */
-    const OWNER_PASSWORD = "mianArchive";
-
-    function openOwnerModal() {
-      document.getElementById("ownerModalBackdrop").style.display = "flex";
-      document.getElementById("ownerPassword").value = "";
-      setTimeout(() => document.getElementById("ownerPassword").focus(), 50);
-    }
-
-    function closeOwnerModal() {
-      document.getElementById("ownerModalBackdrop").style.display = "none";
-    }
-
-    function checkOwnerPassword() {
-      const input = document.getElementById("ownerPassword").value;
-      if (input === OWNER_PASSWORD) {
-        ownerMode = true;
-        closeOwnerModal();
-        openUploadPanel();
-      } else {
-        document.getElementById("ownerPassword").value = "";
-        alert("Incorrect password.");
-      }
-    }
-
-    /* Upload panel */
-    function openUploadPanel() {
-      document.getElementById("uploadPanelBackdrop").style.display = "flex";
-    }
-
-    function closeUploadPanel() {
-      document.getElementById("uploadPanelBackdrop").style.display = "none";
-    }
-
-    /* Add image */
-    function addImage() {
-      const fileInput = document.getElementById("imageUpload");
-      const title = document.getElementById("imageTitle").value;
-      const note = document.getElementById("imageNote").value;
-
-      if (!fileInput.files.length) {
-        alert("Please select an image first.");
-        return;
-      }
-
-      const file = fileInput.files[0];
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        const gallery = document.getElementById("gallery");
-
-        const pin = document.createElement("article");
-        pin.className = "pin";
-        pin.setAttribute("onclick", `openModal(this, ${JSON.stringify(title)}, ${JSON.stringify(note)}, ${JSON.stringify(e.target.result)})`);
-
-        pin.innerHTML = `<img src="${e.target.result}" />`;
-
-        gallery.prepend(pin);
-      };
-
-      reader.readAsDataURL(file);
-
-      fileInput.value = "";
-      document.getElementById("imageTitle").value = "";
-      document.getElementById("imageNote").value = "";
-    }
-
-    /* Shortcut: Shift + O */
-    document.addEventListener("keydown", function (e) {
-      if (e.shiftKey && (e.key === "O" || e.key === "o")) {
-        e.preventDefault();
-        openOwnerModal();
-      }
-    });
   </script>
 
 </body>
