@@ -35,14 +35,9 @@
       100% { background-position: 0% 50%; }
     }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* THINNER HEADER BAR */
+    /* HEADER — THINNER */
     header {
-      padding: 0.8rem 5vw; /* thinner */
+      padding: 0.8rem 5vw;
       text-align: center;
       border-bottom: 1px solid var(--border);
       background: #ffffffcc;
@@ -54,11 +49,10 @@
 
     header h1 {
       font-family: 'Allura', cursive;
-      font-size: 3.0rem; /* slightly smaller for balance */
+      font-size: 3rem;
       font-weight: 400;
       letter-spacing: 0.03em;
       margin-bottom: 0.2rem;
-      animation: slideIn 0.8s ease-out forwards;
     }
 
     header .underline {
@@ -67,7 +61,6 @@
       background: var(--text-main);
       margin: 0.2rem auto 0;
       opacity: 0.35;
-      animation: slideIn 1s ease-out forwards;
     }
 
     /* SUBPANEL */
@@ -99,7 +92,7 @@
       opacity: 0.6;
     }
 
-    /* PANELS */
+    /* PANELS — 2×3 GRID */
     .info-panels {
       max-width: 900px;
       margin: 2rem auto;
@@ -142,7 +135,6 @@
       border-radius: 0.8rem;
       max-width: 500px;
       width: 100%;
-      animation: fadeIn 0.2s ease;
     }
 
     .modal-content h3 {
@@ -157,11 +149,6 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       margin-bottom: 0.8rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.97); }
-      to { opacity: 1; transform: scale(1); }
     }
 
     button {
@@ -201,7 +188,7 @@
     <div class="about-divider"></div>
   </section>
 
-  <!-- 3×3 PANELS IN YOUR EXACT ORDER -->
+  <!-- 2×3 PANELS — YOUR EXACT ORDER -->
   <section class="info-panels">
 
     <div class="panel" onclick="openTextModal('Meeee', 'Write about yourself here...')">
@@ -220,24 +207,12 @@
       Interests
     </div>
 
-    <div class="panel" onclick="openTextModal('Goals', 'Write your goals here...')">
-      Goals
-    </div>
-
-    <div class="panel" onclick="openTextModal('Panel 6', 'Edit this panel text...')">
-      Panel 6
-    </div>
-
     <div class="panel" onclick="openTextModal('Story Time', 'Write your stories here...')">
       Story Time
     </div>
 
-    <div class="panel" onclick="openTextModal('Panel 8', 'Edit this panel text...')">
-      Panel 8
-    </div>
-
-    <div class="panel" onclick="openTextModal('Panel 9', 'Edit this panel text...')">
-      Panel 9
+    <div class="panel" onclick="openTextModal('Goals', 'Write your goals here...')">
+      Goals
     </div>
 
   </section>
